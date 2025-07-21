@@ -9,8 +9,7 @@ print(df_map.head())
 print(df_map.columns)
 print(df_struct.head())
 print(df_struct.columns)
-
-# ▲ 기본정보 확인 ▲
+# 1. 기본정보 확인 ▲
 # ——————————————————————————————————————————————————————————————————
 
 
@@ -22,11 +21,33 @@ df_struct['category_name'] = df_struct['category'].map(category_dict)
 print(df_struct[['x', 'y', 'category', 'category_name']].head(10))
 
 merged_df = pd.merge(df_struct, df_map, on=['x','y'], how='left')
-# ▲ df_struct 랑 df_map : x, y 기준으로 병합 ▲ 
+# 2. df_struct 랑 df_map : x, y 기준으로 병합 ▲ 
 
 # ——————————————————————————————————————————————————————————————————
 
 sorted_df = merged_df.sort_values(by='area').reset_index(drop=True)
-print(sorted_df.head())
+print(sorted_df)
 
-# ▲ 정렬 및 출력 ▲ 
+# 3. 정렬 및 출력 ▲ 
+# ——————————————————————————————————————————————————————————————————
+
+df2 = sorted_df.loc[sorted_df['area'] == '1']
+
+# 4. 필터링 ▲ 
+# * 1~3까지는 조금 헷갈렸으나 4는 비교적 무난했다.
+# ——————————————————————————————————————————————————————————————————
+
+summary = (
+    df_struct.groupby('category_name')
+    .agg(
+        구조물_수 = ('category', 'count'),
+        area_Average = ('area', 'mean'),
+        area_Min = ('area', 'min'),
+        area_Max = ('area', 'max')
+    )
+    .reset_index()
+)
+print(summary)
+
+# 보너스. 구조물 종류별 그룹 집계 (groupby 사용) ▲ 
+# ——————————————————————————————————————————————————————————————————
