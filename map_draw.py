@@ -1,6 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# output 보기 안좋음
+# —————————————————————————————————
+
 def load_data(csv_file):
     """CSV 파일에서 데이터 로드"""
     df = pd.read_csv(csv_file)

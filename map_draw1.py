@@ -1,13 +1,18 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# output 보기 안좋음
+# —————————————————————————————————
+
 # 1단계에서 처리한 데이터 불러오기 (동일한 처리 과정)
 df_category = pd.read_csv("dataFile/area_category.csv")
 df_map = pd.read_csv("dataFile/area_map.csv")
 df_struct = pd.read_csv("dataFile/area_struct.csv")
 
-# 카테고리 매핑
+# 카테고리 매핑 (공백 제거 추가)
 category_dict = pd.Series(df_category[' struct'].values, index=df_category['category']).to_dict()
+# 값에서 공백 제거
+category_dict = {k: v.strip() for k, v in category_dict.items()}
 df_struct['category_name'] = df_struct['category'].map(category_dict)
 
 # 데이터 병합
