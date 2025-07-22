@@ -31,7 +31,8 @@ print(sorted_df)
 # 3. 정렬 및 출력 ▲ 
 # ——————————————————————————————————————————————————————————————————
 
-df2 = sorted_df.loc[sorted_df['area'] == '1']
+df2 = sorted_df.loc[sorted_df['area'] == 1]
+print(df2)
 
 # 4. 필터링 ▲ 
 # * 1~3까지는 조금 헷갈렸으나 4는 비교적 무난했다.
