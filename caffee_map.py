@@ -66,7 +66,7 @@ def generate_structure_report(data, category_df):
         data (pandas.DataFrame): 분석할 데이터프레임
         category_df (pandas.DataFrame): 카테고리 매핑 데이터프레임
     """
-    print('=== 구조물 종류별 요약 통계 (보너스) ===')
+    print('\n=== 보너스 확장: 구조물 종류별 요약 통계 ===')
     
     # 구조물이 있는 데이터만 추출 (category가 0이 아닌 것들)
     structures = data[data['category'] != 0].copy()
@@ -92,6 +92,8 @@ def generate_structure_report(data, category_df):
             struct_name = category_mapping.get(category, f'Category_{category}')
             struct_locations = structures[structures['category'] == category][['x', 'y']]
             print(f'{struct_name}: {list(zip(struct_locations["x"], struct_locations["y"]))}')
+        
+        print('=' * 50)
     else:
         print('구조물 데이터가 없습니다.')
     

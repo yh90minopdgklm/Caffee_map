@@ -145,15 +145,17 @@ def create_map_visualization(data, category_df):
     ax.set_xticks(range(x_min, x_max + 1))
     ax.set_yticks(range(y_min, y_max + 1))
     
-    # 범례 추가 (보너스)
+    # 보너스 확장: 범례 추가
     if legend_handles:
         ax.legend(
             legend_handles, 
             legend_labels, 
             loc='upper left', 
             bbox_to_anchor=(1.02, 1),
-            fontsize=10
+            fontsize=10,
+            title='구조물 종류 (보너스 확장)'
         )
+        print('\n=== 보너스 확장: 지도 범례 표시 완료 ===')
     
     # 그래프 조정
     plt.tight_layout()
