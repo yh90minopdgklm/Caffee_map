@@ -31,8 +31,7 @@ def load_processed_data():
     # 세 데이터를 하나의 DataFrame으로 병합
     merged_data = area_map.merge(area_struct, on=['x', 'y'], how='left')
     
-    # y좌표를 1부터 시작하도록 변환 (8→1, 9→2, ..., 15→8)
-    merged_data['y'] = merged_data['y'] - 7
+    # Y좌표는 원본 그대로 사용 (1~15 범위)
     
     # 전체 데이터 사용 (area 필터링 제거)
     print(f'전체 데이터 크기: {merged_data.shape}')
